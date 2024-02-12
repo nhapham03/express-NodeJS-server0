@@ -39,6 +39,13 @@ app.get('/user/:username', (req, res) => {
     res.send(responseMessage);
 });
 
+// Get route that handles query strings
+app.get('/get', (req, res) => {
+    const queryParams = req.query;
+    console.log("Query String Parameters:", queryParams);
+    res.send("Query String Parameters logged to console");
+});
+
 app.use((req, res) => {
     res.type('text/plain');
     res.status(404);
