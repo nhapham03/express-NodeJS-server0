@@ -26,12 +26,18 @@ app.get('/foo', (req, res) => {
 });
 
 //username
-// Route using regular expression to match multiple URL patterns
 app.get(/^\/user(name)?$/, (req, res) => {
     res.type('text/plain');
     res.send("User Route");
 });
 
+// Route with a parameter in its path
+app.get('/user/:username', (req, res) => {
+    const username = req.params.username;
+    const responseMessage = `Hello ${username}`;
+    res.type('text/plain');
+    res.send(responseMessage);
+});
 
 app.use((req, res) => {
     res.type('text/plain');
