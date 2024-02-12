@@ -13,6 +13,18 @@ app.get('/about', (req, res) => {
     res.send("About Page");
 });
 
+
+app.get('/foo', (req, res, next) => {
+    const randomResponse = Math.random() < 0.5 ? "sometimes this" : next();
+    res.type('text/plain');
+    res.send(randomResponse);
+});
+
+app.get('/foo', (req, res) => {
+    res.type('text/plain');
+    res.send("and sometimes that");
+});
+
 app.use((req, res) => {
     res.type('text/plain');
     res.status(404);
